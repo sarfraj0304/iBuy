@@ -43,7 +43,7 @@ ProductRouter.patch("/:id", ProfileAuthMiddleware, async (req, res) => {
 });
 
 // delete perticular product
-ProductRouter.patch("/:id", ProfileAuthMiddleware, async (req, res) => {
+ProductRouter.delete("/:id", ProfileAuthMiddleware, async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findByIdAndDelete({ _id: id });
@@ -54,7 +54,7 @@ ProductRouter.patch("/:id", ProfileAuthMiddleware, async (req, res) => {
 });
 
 //  all itmes which are sold by sellers
-ProductRouter.get("/sold", ProfileAuthMiddleware, async (req, res) => {
+ProductRouter.get("/sold/items", async (req, res) => {
   try {
     const product = await ProductBuyerModel.find().populate([
       "userID",
